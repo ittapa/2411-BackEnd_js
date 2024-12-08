@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Management</title>
+    <title>JS(NODE) SERVER - User Management</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 <div class="container mt-4">
-    <h1>User Management</h1>
+    <h1>JS(NODE) SERVER - User Management</h1>
 
     <!-- Create New User 버튼 -->
     <a href="/create-user" class="btn btn-success mb-3">Create New User</a>
@@ -31,7 +31,7 @@
                 <td><%= user.email %></td>
                 <td>
                     <button class="btn btn-primary" onclick="openEditUserModal(<%= user.id %>, '<%= user.name %>', '<%= user.email %>')">Edit</button>
-                    <button class="btn btn-danger" onclick="deleteUser(<%= user.id %>)">Delete</button>
+                    <button class="btn btn-danger" onclick="confirmDeleteUser(<%= user.id %>)">Delete</button>
                 </td>
             </tr>
         <% }); %>
@@ -114,6 +114,14 @@
         }
 
         closeEditUserModal();
+    }
+
+    // 사용자 삭제 확인창 추가
+    function confirmDeleteUser(id) {
+        const confirmation = confirm('Are you sure you want to delete this user?');
+        if (confirmation) {
+            deleteUser(id); // 삭제 함수 호출
+        }
     }
 
     // 사용자 삭제
